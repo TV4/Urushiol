@@ -71,7 +71,6 @@ module Urushiol
 
     def cleanup
       system("rm /tmp/test.vtc")
-      system("rm /tmp/test.vcl")
     end
   end
 end
