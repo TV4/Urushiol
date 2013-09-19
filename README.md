@@ -56,7 +56,7 @@ This behaviour we can now test:
 ```ruby
 testcase.client_testcase "c1" do |test|
   test.txreq do |req|
-    req.host "superbackend.tv4.se
+    req.host "superbackend.tv4.se"
   end
   test.rxresp
   test.expect "resp.status == 200"
@@ -86,7 +86,7 @@ end
 
 testcase.client_testcase "c1" do |test|
   test.txreq do |req|
-    req.host "superbackend.tv4.se
+    req.host "superbackend.tv4.se"
   end
   test.rxresp
   test.expect "resp.status == 200"
