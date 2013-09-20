@@ -22,7 +22,7 @@ module Urushiol
     end
 
     def expect(criteria)
-      @client_test << "\nexpect #{criteria}"
+      @client_test << "\nexpect #{criteria.strip}"
     end
 
     def run
