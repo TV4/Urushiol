@@ -1,4 +1,4 @@
-require './lib/txreq'
+require 'txreq'
 
 module Urushiol
   class ClientTestBase
