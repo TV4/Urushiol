@@ -65,14 +65,20 @@ module Urushiol
 
     def run
       create_test_file(@vtc_obj)
-      output=`varnishtest /tmp/test.vtc` ;  result=$?.success?
-      if result == false
-        puts output
-        puts "Varnishtests returned errors, see stack trace above."
+      varnishd_check = `which varnishd` ;  result=$?.success?
+      if result == true
+        output=`varnishtest /tmp/test.vtc` ;  result=$?.success?
+        if result == false
+          puts output
+          puts "Varnishtests returned errors, see stack trace above."
+        else
+          puts "Varnishtest completed successfully without errors! Urushiol contratulates you!"
+        end
+        cleanup
       else
-        puts "Varnishtest completed successfully without errors! Urushiol contratulates you!"
+        puts "Varnish does not seem to be installed on your computer. Urushiol can't run without Varnish"
       end
-      cleanup
+
     end
 
     def cleanup
