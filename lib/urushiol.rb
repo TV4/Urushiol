@@ -35,7 +35,7 @@ module Urushiol
       @vtc_obj.mock_clients_and_tests(tests)
     end
 
-    def client_testcase(name,config="",&block)
+    def client_testcase(name="c",config="",&block)
       test = ClientTestBase.new(name,config)
       yield test if block_given?
       @vtc_obj.append_config(test.test_source)
@@ -70,7 +70,7 @@ module Urushiol
     end
 
     def cleanup
-      system("rm /tmp/test.vtc")
+      # system("rm /tmp/test.vtc")
     end
   end
 end

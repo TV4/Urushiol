@@ -12,7 +12,7 @@ module Urushiol
         #Mock servers in vtc-file
         backends.each do |backend|
           index = backends.index(backend)
-          @vtc << "server s#{index} -repeat 100 {
+          @vtc << "server s#{index} -repeat 10000 {
               # Receive a request
               rxreq
               # Send a standard response

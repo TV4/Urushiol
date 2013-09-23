@@ -1,4 +1,4 @@
-require './lib/varnishtest_base'
+require './lib/urushiol'
 
 testcase = Urushiol::VarnishTestBase.new("firsttest")
 
