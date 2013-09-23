@@ -1,8 +1,8 @@
-require './lib/vtc'
-require './lib/vcl'
-require './lib/client_test_base'
-require './lib/server'
-require './lib/varnish'
+require 'vtc'
+require 'vcl'
+require 'client_test_base'
+require 'server'
+require 'varnish'
 
 module Urushiol
   class VarnishTestBase
@@ -65,12 +65,18 @@ module Urushiol
 
     def run
       create_test_file(@vtc_obj)
-      system("varnishtest /tmp/test.vtc")
+      output=`varnishtest /tmp/test.vtc` ;  result=$?.success?
+      if result == false
+        puts output
+        puts "Varnishtests returned errors, see stack trace above."
+      else
+        puts "Varnishtest completed successfully without errors! Urushiol contratulates you!"
+      end
       cleanup
     end
 
     def cleanup
-      # system("rm /tmp/test.vtc")
+      system("rm /tmp/test.vtc")
     end
   end
 end

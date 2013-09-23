@@ -4,7 +4,7 @@ $:.push File.expand_path("./lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'urushiol'
-  s.version     = '0.6'
+  s.version     = '0.6.2'
   s.date        = '2013-09-23'
   s.required_ruby_version = ">=1.9.3"
   s.authors     = ["TV4","Karl Litterfeldt"]
