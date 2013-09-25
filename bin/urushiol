@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+require 'urushiol'
+
+class TestCase
+  def initialize test_file
+    @testcase = Urushiol::VarnishTestBase.new("#{test_file}")
+  end
+
+  def testcase
+    @testcase
+  end
+
+end
+
+def run_testfile file_ref
+
+  test = TestCase.new file_ref
+  puts "\nRunning test #{file_ref} :  "
+  test.instance_eval("def run \n #{IO.read(file_ref)} \nend")
+  test.run
+end
+
+def create_test_file test_name
+  out_file = File.new("#{test_name}.uru.rb", "w")
+
+  out_file.puts("# Welcome to Urushio! We have created a testcase instance for you. ")
+  out_file.puts("# Access it by calling methods on the variable \"testcase2\", like so:")
+  out_file.puts("#")
+  out_file.puts("#  testcase.mock_server \"s1\" do |server|")
+  out_file.puts("#    server.rxreq")
+  out_file.puts("#    server.txresp")
+  out_file.puts("#  end")
+  out_file.puts("#")
+  out_file.puts("#  testcase.run")
+  out_file.puts("#")
+  out_file.puts("# If you have any questions regarding functionality we redirect you to our Github page:")
+  out_file.puts("# https://github.com/TV4/Urushiol")
+  out_file.puts("#")
+  out_file.puts("# Run this test by running `urushiol #{test_name}.uru.rb` in your shell.")
+  out_file.puts("")
+  out_file.puts("testcase.mock_server(\"s1\") do |server|")
+  out_file.puts("  server.rxreq")
+  out_file.puts("  server.txresp")
+  out_file.puts("end")
+  out_file.puts("")
+  out_file.puts("testcase.client_testcase(\"c1\",\"-connect ${s1_sock} \") do |test|")
+  out_file.puts("  test.txreq")
+  out_file.puts("  test.rxresp")
+  out_file.puts("end")
+  out_file.puts("")
+  out_file.puts("testcase.server do |server|")
+  out_file.puts("  server.wait(\"s1\")")
+  out_file.puts("end")
+  out_file.puts("")
+  out_file.puts("testcase.run")
+
+  out_file.close
+
+  puts "#{test_name}.uru.rb successfully created."
+end
+
+
+if ARGV.empty?
+  puts "Welcome to Urushiol. The easy test framework for varnish vcl files."
+
+elsif ARGV.first.downcase == "integritycheck"
+  Dir.glob("test/**/*").each do |testfile|
+    run_testfile testfile
+  end
+elsif ARGV.first == "generate"
+  if ARGV[1] != nil
+    create_test_file(ARGV[1])
+  else
+    puts "Please specify a name for your test."
+  end
+
+
+elsif File.exists? ARGV.first
+  ARGV.each do |testfile|
+    if File.exists? testfile
+      run_testfile testfile
+    end
+  end
+else
+  puts "Urushiol did not recognize \"#{ARGV.join(" ")} \" as argument(s)."
+
+end
+
+

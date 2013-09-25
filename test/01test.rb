@@ -1,7 +1,3 @@
-require './lib/urushiol'
-
-testcase = Urushiol::VarnishTestBase.new("firsttest")
-
 testcase.mock_server("s1") do |server|
   server.rxreq
   server.txresp

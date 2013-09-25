@@ -2,7 +2,7 @@ module Urushiol
   class Vtc
 
     def initialize(name)
-      @vtc = "varnishtest \"#{name}\"\n"
+      @vtc = ""
     end
 
     def mock_backends(vcl)

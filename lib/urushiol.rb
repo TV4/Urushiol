@@ -70,9 +70,9 @@ module Urushiol
         output=`varnishtest /tmp/test.vtc` ;  result=$?.success?
         if result == false
           puts output
-          puts "Varnishtests returned errors, see stack trace above."
+          puts "\nVarnishtests returned errors, see stack trace above."
         else
-          puts "Varnishtest completed successfully without errors! Urushiol contratulates you!"
+          puts "Test completed successfully without errors."
         end
         cleanup
       else
@@ -82,7 +82,7 @@ module Urushiol
     end
 
     def cleanup
-      system("rm /tmp/test.vtc")
+      #system("rm /tmp/test.vtc")
     end
   end
 end
