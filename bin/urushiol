@@ -24,10 +24,6 @@ def root_path
   File.dirname(__FILE__).to_s+"/../"
 end
 
-
-
-
-
 if ARGV.empty?
   puts "Welcome to Urushiol. The easy test framework for varnish vcl files."
 
