@@ -59,12 +59,19 @@ def create_test_file test_name
   puts "#{test_name}.uru.rb successfully created."
 end
 
+def root_path
+  File.dirname(__FILE__).to_s+"/../"
+end
+
+
+
+
 
 if ARGV.empty?
   puts "Welcome to Urushiol. The easy test framework for varnish vcl files."
 
 elsif ARGV.first.downcase == "integritycheck"
-  Dir.glob("test/**/*").each do |testfile|
+  Dir.glob("#{root_path}test/**/*").each do |testfile|
     run_testfile testfile
   end
 elsif ARGV.first == "generate"
@@ -73,8 +80,6 @@ elsif ARGV.first == "generate"
   else
     puts "Please specify a name for your test."
   end
-
-
 elsif File.exists? ARGV.first
   ARGV.each do |testfile|
     if File.exists? testfile
@@ -85,5 +90,10 @@ else
   puts "Urushiol did not recognize \"#{ARGV.join(" ")} \" as argument(s)."
 
 end
+
+
+
+
+
 
 
