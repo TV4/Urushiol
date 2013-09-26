@@ -24,7 +24,7 @@ def create_test_file test_name
   out_file = File.new("#{test_name}.uru.rb", "w")
 
   out_file.puts("# Welcome to Urushio! We have created a testcase instance for you. ")
-  out_file.puts("# Access it by calling methods on the variable \"testcase2\", like so:")
+  out_file.puts("# Access it by calling methods on the variable \"testcase\", like so:")
   out_file.puts("#")
   out_file.puts("#  testcase.mock_server \"s1\" do |server|")
   out_file.puts("#    server.rxreq")
