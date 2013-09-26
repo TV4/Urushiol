@@ -1,21 +1,12 @@
 #!/usr/bin/env ruby
 require 'urushiol'
-
-class TestCase
-  def initialize test_file
-    @testcase = Urushiol::VarnishTestBase.new("#{test_file}")
-  end
-
-  def testcase
-    @testcase
-  end
-
-end
+require 'test_case'
 
 def run_testfile file_ref
-
   test = TestCase.new file_ref
+
   puts "\nRunning test #{file_ref} :  "
+
   test.instance_eval("def run \n #{IO.read(file_ref)} \nend")
   test.run
 end
