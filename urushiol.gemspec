@@ -1,11 +1,12 @@
 # encoding: utf-8
-
-$:.push File.expand_path("./lib", __FILE__)
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+require 'meta/version'
 
 Gem::Specification.new do |s|
   s.name        = 'urushiol'
-  s.version     = '0.8.2'
-  s.date        = '2013-09-23'
+  s.version     =  Urushiol::VERSION
+  s.date        =  Date.today.to_s
   s.required_ruby_version = ">=1.9.2"
   s.authors     = ["TV4","Karl Litterfeldt"]
   s.email       = "karl.litterfeldt@tv4.se"
@@ -18,5 +19,6 @@ Gem::Specification.new do |s|
   s.files       = Dir.glob("lib/**/*") + Dir.glob("test/**/*") + Dir.glob("meta/**/*") + Dir.glob("bin/**/*") + %w(urushiol.gemspec LICENSE README.md)
   s.executables   = %w(urushiol)
   s.require_paths = ["lib"]
+
 
 end

@@ -2,6 +2,8 @@
 require 'urushiol'
 require 'test_case'
 require 'pathname'
+require 'meta/help'
+require 'meta/version'
 
 def run_testfile file_ref
   test = TestCase.new file_ref
@@ -26,6 +28,11 @@ end
 
 if ARGV.empty?
   puts "Welcome to Urushiol. The easy test framework for varnish vcl files."
+elsif ARGV.include? "--version"
+  puts "Version : #{Urushiol::VERSION}"
+
+elsif ARGV.include? "--help"
+  puts Urushiol::HELP
 
 elsif ARGV.first.downcase == "integritycheck"
   Dir.glob("#{root_path}test/**/*").each do |testfile|
@@ -45,7 +52,6 @@ elsif File.exists? ARGV.first
   end
 else
   puts "Urushiol did not recognize \"#{ARGV.join(" ")} \" as argument(s)."
-
 end
 
 
