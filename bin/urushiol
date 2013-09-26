@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 require 'urushiol'
 require 'test_case'
+require 'pathname'
 
 def run_testfile file_ref
   test = TestCase.new file_ref
 
-  puts "\nRunning test #{file_ref} :  "
+  puts "\nRunning test #{Pathname.new(file_ref).basename} :  "
 
   test.instance_eval("def run \n #{IO.read(file_ref)} \nend")
   test.run
