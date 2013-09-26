@@ -13,42 +13,11 @@ def run_testfile file_ref
 end
 
 def create_test_file test_name
-  out_file = File.new("#{test_name}.uru.rb", "w")
-
-  out_file.puts("# Welcome to Urushio! We have created a testcase instance for you. ")
-  out_file.puts("# Access it by calling methods on the variable \"testcase\", like so:")
-  out_file.puts("#")
-  out_file.puts("#  testcase.mock_server \"s1\" do |server|")
-  out_file.puts("#    server.rxreq")
-  out_file.puts("#    server.txresp")
-  out_file.puts("#  end")
-  out_file.puts("#")
-  out_file.puts("#  testcase.run")
-  out_file.puts("#")
-  out_file.puts("# If you have any questions regarding functionality we redirect you to our Github page:")
-  out_file.puts("# https://github.com/TV4/Urushiol")
-  out_file.puts("#")
-  out_file.puts("# Run this test by running `urushiol #{test_name}.uru.rb` in your shell.")
-  out_file.puts("")
-  out_file.puts("testcase.mock_server(\"s1\") do |server|")
-  out_file.puts("  server.rxreq")
-  out_file.puts("  server.txresp")
-  out_file.puts("end")
-  out_file.puts("")
-  out_file.puts("testcase.client_testcase(\"c1\",\"-connect ${s1_sock} \") do |test|")
-  out_file.puts("  test.txreq")
-  out_file.puts("  test.rxresp")
-  out_file.puts("end")
-  out_file.puts("")
-  out_file.puts("testcase.server do |server|")
-  out_file.puts("  server.wait(\"s1\")")
-  out_file.puts("end")
-  out_file.puts("")
-  out_file.puts("testcase.run")
-
+  out_file = File.new("#{test_name}.uru", "w")
+  out_file << IO.readlines("#{root_path}meta/test_skeleton.uru").join('')
   out_file.close
 
-  puts "#{test_name}.uru.rb successfully created."
+  puts "#{test_name}.uru successfully created."
 end
 
 def root_path
