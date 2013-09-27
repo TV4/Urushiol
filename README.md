@@ -109,7 +109,7 @@ As such, if I wanted to test routing for a specific server say our 'super-backen
 When i feel content with my test coverage after specifying 30 diferent client test cases I finish everything of by running the test case by invoking 
 the `run` method.
 
-`testcase.run``
+`testcase.run`
 
 and that should be it.
 
