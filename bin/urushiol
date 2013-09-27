@@ -59,14 +59,21 @@ elsif (ARGV.include?("--help") || ARGV.include?("-h"))
   puts Urushiol::HELP
 
 elsif (ARGV.include?("--live") || ARGV.include?("-l"))
-  vclfile    = ARGV[ARGV.find_index("--live")+1]
-  test_files = ARGV[(ARGV.find_index("--live")+2)...ARGV.length]
+  live_flag = "--live" if ARGV.include?("--love")
+  live_flag = "-l" if ARGV.include?("-l")
+
+  vclfile    = ARGV[ARGV.find_index(live_flag)+1]
+  test_files = ARGV[(ARGV.find_index(live_flag)+2)...ARGV.length]
   run_typed_testfiles(test_files, vclfile, "live")
 
 
 elsif (ARGV.include?("--mock") || ARGV.include?("-m"))
-  vclfile    = ARGV[ARGV.find_index("--mock")+1]
-  test_files = ARGV[(ARGV.find_index("--mock")+2)...ARGV.length]
+
+  mock_flag = "--mock" if ARGV.include?("--mock")
+  mock_flag = "-m" if ARGV.include?("-m")
+
+  vclfile    = ARGV[ARGV.find_index(mock_flag)+1]
+  test_files = ARGV[(ARGV.find_index(mock_flag)+2)...ARGV.length]
   run_typed_testfiles(test_files, File.absolute_path(vclfile), "mock")
 
 

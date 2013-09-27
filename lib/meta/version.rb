@@ -1,3 +1,3 @@
 module Urushiol
-  VERSION = '1.0.0pre'
+  VERSION = '1.0.1'
 end
