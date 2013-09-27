@@ -79,11 +79,11 @@ and the backend name as the body response. This state is great for unit-testing 
 
 The third state is 'live'. This state is identical to the second state but leaves the backends as they are. This means that if a request is sent to backend A and 
 that backend points at a live server, the request will be sent to that server. This state is great for integration-tests and to check that the configured cache logics of
-the vcl file is on pare with what the actual servers return (such as cache headers etc). Also for testing that your varnish server can access the servers.
+the vcl file is on par with what the actual servers return (such as cache headers etc). Also for testing that your varnish server can access the servers.
 
-While testing in live and mock states Urushiol will handle the backends (mock or real) and the acutal instance of varnish. What you as a user have to do is to provide testcases.
+While testing in live and mock states Urushiol will handle the backends (mock or real) and the acutal instance of varnish. What you as a user have to do is to provide test cases.
 
-Upon execution the test will be given a testcase object to perform operations on. The two main methods that are interesting to you as a 
+Upon execution the test will be given a test case object to perform operations on. The two main methods that are interesting to you as a 
 tester are `client_testcase` which takes a block and yields a client_testcase to do operations upon; as seen below:
 
 ```ruby
@@ -97,16 +97,16 @@ testcase.client_testcase "c1" do |test|
 end
 ```
 
-and the `run` method which should be the last thing you write in every testcase.
+and the `run` method which should be the last thing you write in every test case.
 
-What acutally happens here is that you create a client testcase. You mock a client and tell it to send a request to the varnish 
-instance, then listen for a response and check conditions on that response. If all conditions are met that testcase succeeds.
-An .uru file should be seen as a context, within which one can have multiple tests. Each of these should be rellated to the context 
+What acutally happens here is that you create a client test case. You mock a client and tell it to send a request to the varnish 
+instance, then listen for a response and check conditions on that response. If all conditions are met that test case succeeds.
+An .uru file should be seen as a context, within which one can have multiple tests. Each of these should be related to the context 
 which in turn is stated in the name of the file. 
 
 As such, if I wanted to test routing for a specific server say our 'super-backend' I would name the .uru file : superbackend_routing.uru
 
-When i feel content with my testcoverage after specifying 30 diferent client testcases I finish everything of by running the testcase by invoking 
+When i feel content with my test coverage after specifying 30 diferent client test cases I finish everything of by running the test case by invoking 
 the `run` method.
 
 `testcase.run``
@@ -117,7 +117,7 @@ Now to run the test i would give Urushiol a state flag; a vcl file reference; th
 
 `urushiol --mock /path/to/awesome.vcl /path/to/superbackend_routing.uru`
 
-Urushiol now preforms the tests and gives you a result; a yay if success or a stacktrace if the testcase fails. 
+Urushiol now preforms the tests and gives you a result; a yay if success or a stack trace if the test case fails. 
 
 There is of course more you can do here; test advanced cache logic at the same time as routing with http authentication etc. 
 Check the source code to see what is given and if you find something missing, send us an email or do it yourself by forking; fixing; submitting pull request.
