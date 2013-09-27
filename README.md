@@ -67,7 +67,7 @@ the requirements stated above.
 
 ####Writing your own tests.
 Now to write your own tests. It is assumed that you have a varnish `.vcl` file that you want to test.
-Each test are written in ruby, and contained within an `.uru` file by convention 
+Each test is written in ruby, and contained within an `.uru` file by convention 
 but any readable file containing ruby code will do.
 
 Tests can run in three states: 
