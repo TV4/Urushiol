@@ -71,6 +71,7 @@ module Urushiol
         if result == false
           puts output
           puts "\nVarnishtests returned errors, see stack trace above."
+          exit 1
         else
           puts "Test completed successfully without errors."
         end
