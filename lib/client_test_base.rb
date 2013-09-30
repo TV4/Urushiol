@@ -26,11 +26,11 @@ module Urushiol
     end
 
     def run
-      @client_test << "\n} -run"
+      @client_test << "\n} -run\n"
     end
 
     def test_source
-      if @client_test.end_with?("\n} -run")
+      if @client_test.end_with?("\n} -run\n")
         @client_test
       else
         run
