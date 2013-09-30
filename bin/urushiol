@@ -59,8 +59,10 @@ elsif (ARGV.include?("--help") || ARGV.include?("-h"))
   puts Urushiol::HELP
 
 elsif (ARGV.include?("--live") || ARGV.include?("-l"))
-  live_flag = "--live" if ARGV.include?("--love")
+  live_flag = "--live" if ARGV.include?("--live")
   live_flag = "-l" if ARGV.include?("-l")
+
+
 
   vclfile    = ARGV[ARGV.find_index(live_flag)+1]
   test_files = ARGV[(ARGV.find_index(live_flag)+2)...ARGV.length]
